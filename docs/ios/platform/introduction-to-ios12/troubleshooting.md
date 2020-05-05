@@ -40,4 +40,4 @@ ms.locfileid: "73031850"
 Xamarin. iOS で特定の iOS 12 機能を実装する方法に関する質問については、以下を参照してください。
 
 - [Xamarin フォーラム](https://forums.xamarin.com/categories/ios)
-- [スタック オーバーフロー](https://stackoverflow.com/search?tab=newest&q=xamarin)
+- [Stack Overflow](https://stackoverflow.com/search?tab=newest&q=xamarin)
