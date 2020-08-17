@@ -36,7 +36,7 @@ Xamarin ベースのアプリで新しい Android 5.0 以降の機能 (を含む
 
 - **Android SDK** &ndash;Android SDK Manager を使用して、Android 5.0 (API 21) 以降をインストールする必要があります。
 
-- **JAVA JDK 1.8** &ndash;API レベル23以前を対象としている場合は、JDK 1.7 を使用できます。 JDK 1.8 は、 [Oracle](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)から入手できます。
+- **Java JDK 1.8** &ndash;API レベル23以前を対象としている場合は、JDK 1.7 を使用できます。 JDK 1.8 は、 [Oracle](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)から入手できます。
 
 アプリにもパッケージが含まれている必要があり `Xamarin.Android.Support.v7.CardView` ます。 Visual Studio for Mac にパッケージを追加するには、次のようにし `Xamarin.Android.Support.v7.CardView` ます。
 
