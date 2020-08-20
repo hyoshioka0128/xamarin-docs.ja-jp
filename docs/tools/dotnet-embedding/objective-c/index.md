@@ -1,6 +1,6 @@
 ---
-title: 目的-C のサポート
-description: このドキュメントでは、.NET 埋め込みでの目的 C のサポートについて説明します。 自動参照カウント、NSString、プロトコル、NSObject プロトコル、例外などについて説明します。
+title: Objective-C のサポート
+description: このドキュメントでは、.NET 埋め込みでの Objective-C のサポートについて説明します。 自動参照カウント、NSString、プロトコル、NSObject プロトコル、例外などについて説明します。
 ms.prod: xamarin
 ms.assetid: 3367A4A4-EC88-4B75-96D0-51B1FCBCE614
 author: davidortinau
@@ -13,7 +13,7 @@ ms.contentlocale: ja-JP
 ms.lasthandoff: 10/29/2019
 ms.locfileid: "73029706"
 ---
-# <a name="objective-c-support"></a>目的-C のサポート
+# <a name="objective-c-support"></a>Objective-C のサポート
 
 ## <a name="specific-features"></a>特定の機能
 
@@ -29,23 +29,23 @@ ms.locfileid: "73029706"
 
 ### <a name="protocols-support"></a>プロトコルのサポート
 
-マネージインターフェイスは、すべてのメンバーが `@required`する目的の C プロトコルに変換されます。
+マネージインターフェイスは、すべてのメンバーが `@required`する Objective-C プロトコルに変換されます。
 
 ### <a name="nsobject-protocol-support"></a>NSObject プロトコルのサポート
 
-既定では、.NET と目的 C ランタイムの両方の既定のハッシュおよび等価性は、類似したセマンティクスを共有しているため、交換可能であると見なされます。
+既定では、.NET と Objective-C ランタイムの両方の既定のハッシュおよび等価性は、類似したセマンティクスを共有しているため、交換可能であると見なされます。
 
-マネージ型が `Equals(Object)` または `GetHashCode`をオーバーライドする場合は、通常、既定の (.NET) 動作が不十分であったことを意味します。これは、既定の目的 C の動作では不十分である可能性があることを意味します。
+マネージ型が `Equals(Object)` または `GetHashCode`をオーバーライドする場合は、通常、既定の (.NET) 動作が不十分であったことを意味します。これは、既定の Objective-C の動作では不十分である可能性があることを意味します。
 
-このような場合、ジェネレーターは[`NSObject` プロトコル](https://developer.apple.com/reference/objectivec/1418956-nsobject?language=objc)で定義されている[`isEqual:`](https://developer.apple.com/reference/objectivec/1418956-nsobject/1418795-isequal?language=objc)メソッドと[`hash`](https://developer.apple.com/reference/objectivec/1418956-nsobject/1418859-hash?language=objc)プロパティをオーバーライドします。 これにより、カスタムマネージ実装を目的の C コードから透過的に使用できるようになります。
+このような場合、ジェネレーターは[`NSObject` プロトコル](https://developer.apple.com/reference/objectivec/1418956-nsobject?language=objc)で定義されている[`isEqual:`](https://developer.apple.com/reference/objectivec/1418956-nsobject/1418795-isequal?language=objc)メソッドと[`hash`](https://developer.apple.com/reference/objectivec/1418956-nsobject/1418859-hash?language=objc)プロパティをオーバーライドします。 これにより、カスタムマネージ実装を Objective-C コードから透過的に使用できるようになります。
 
 ### <a name="exceptions-support"></a>例外のサポート
 
-`--nativeexception` を引数として `objcgen` に渡すと、マネージ例外が、キャッチして処理できるように、目的の C 例外に変換されます。 
+`--nativeexception` を引数として `objcgen` に渡すと、マネージ例外が、キャッチして処理できるように、Objective-C 例外に変換されます。 
 
 ### <a name="comparison"></a>条件式
 
-`IComparable` (またはそのジェネリックバージョン `IComparable<T>`) を実装するマネージ型では、`NSComparisonResult` を返し、`nil` 引数を受け取る、目的の C のわかりやすいメソッドが生成されます。 これにより、生成された API が目的の C 開発者にとってよりわかりやすくなります。 (例:
+`IComparable` (またはそのジェネリックバージョン `IComparable<T>`) を実装するマネージ型では、`NSComparisonResult` を返し、`nil` 引数を受け取る、Objective-C のわかりやすいメソッドが生成されます。 これにより、生成された API が Objective-C 開発者にとってよりわかりやすくなります。 (例:
 
 ```objc
 - (NSComparisonResult)compare:(XAMComparableType * _Nullable)other;
@@ -62,7 +62,7 @@ public static class SomeExtensions {
 }
 ```
 
-は、次のような目的の C カテゴリを作成します。
+は、次のような Objective-C カテゴリを作成します。
 
 ```objc
 @interface Collection (SomeExtensions)
@@ -73,7 +73,7 @@ public static class SomeExtensions {
 @end
 ```
 
-1つのマネージ型が複数の型を拡張する場合、複数の目的 C のカテゴリが生成されます。
+1つのマネージ型が複数の型を拡張する場合、複数の Objective-C のカテゴリが生成されます。
 
 ### <a name="subscripting"></a>添字演算子
 
@@ -86,7 +86,7 @@ public bool this[int index] {
 }
 ```
 
-次のような目的で C を作成します。
+次のような Objective-C を作成します。
 
 ```objc
 - (id)objectAtIndexedSubscript:(int)idx;
@@ -108,11 +108,11 @@ if ([intCollection [0] isEqual:@42])
 
 ### <a name="constructors-vs-initializers"></a>コンストラクターと初期化子
 
-目的 C では、継承チェーン内の任意の親クラスの任意の初期化子プロトタイプを呼び出すことができます。ただし、使用不可 (`NS_UNAVAILABLE`) としてマークされている場合は除きます。
+Objective-C では、継承チェーン内の任意の親クラスの任意の初期化子プロトタイプを呼び出すことができます。ただし、使用不可 (`NS_UNAVAILABLE`) としてマークされている場合は除きます。
 
 でC#は、クラス内のコンストラクターメンバーを明示的に宣言する必要があります。これは、コンストラクターが継承されないことを意味します。
 
-C# API の正しい表現を目的の C に公開するために、親クラスの子クラスに存在しない初期化子には`NS_UNAVAILABLE`が追加されます。
+C# API の正しい表現を Objective-C に公開するために、親クラスの子クラスに存在しない初期化子には`NS_UNAVAILABLE`が追加されます。
 
 C#API
 
@@ -134,7 +134,7 @@ public class SuperUnique : Unique {
 }
 ```
 
-目的-C が提示した API:
+Objective-C が提示した API:
 
 ```objc
 @interface SuperUnique : Unique
@@ -166,7 +166,7 @@ public static AllOperators operator + (AllOperators c1, AllOperators c2)
 
 ただし、一部の .NET 言語では演算子のオーバーロードがサポートされていないため、演算子のオーバーロードに加えて["わかりやすい"](https://docs.microsoft.com/dotnet/standard/design-guidelines/operator-overloads)名前付きメソッドを含めることもよくあります。
 
-演算子のバージョンと "フレンドリ" の両方のバージョンが見つかった場合は、同じ目的の C 名に生成されるため、フレンドリバージョンのみが生成されます。
+演算子のバージョンと "フレンドリ" の両方のバージョンが見つかった場合は、同じ Objective-C 名に生成されるため、フレンドリバージョンのみが生成されます。
 
 ```csharp
 public static AllOperatorsWithFriendly operator + (AllOperatorsWithFriendly c1, AllOperatorsWithFriendly c2)
